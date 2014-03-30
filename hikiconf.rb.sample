@@ -137,3 +137,5 @@
 #
 # 記述例
 # @options['amazon.aid'] = 'amazon-01' 
+
+@options['attach.cgi_name'] = 'attach'

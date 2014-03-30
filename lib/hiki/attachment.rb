@@ -20,6 +20,11 @@ module Hiki
       env.each{|k,v| ENV[k] = v.to_s unless /\Arack\./ =~ k }
       conf = Hiki::Config.new(@config_path)
       response = attach_file(request, conf)
+
+      charset = response.header.delete('charset')
+      response.header['Content-Type'] ||= response.header.delete('type')
+      response.header['Content-Type'] += "; charset=#{charset}" if charset
+
       response.finish
     end
 
